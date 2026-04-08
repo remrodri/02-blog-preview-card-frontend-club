@@ -1,0 +1,61 @@
+/* ================================
+   RESET / BASE STYLES
+   ================================ */
+
+/* 1. Box sizing consistente */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Quitar márgenes por defecto */
+* {
+  margin: 0;
+}
+
+/* 3. Altura y tipografía base */
+html,
+body {
+  height: 100%;
+  font-family: "Figtree", sans-serif;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 4. Medios responsivos */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 5. Formularios heredan fuente */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 6. Evitar desbordes de texto */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 7. Root stacking context (React) */
+#root {
+  isolation: isolate;
+}
