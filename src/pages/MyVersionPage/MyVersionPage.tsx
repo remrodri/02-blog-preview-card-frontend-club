@@ -16,6 +16,7 @@ const MyVersionPage = () => {
         width: "100vw",
         // backgroundColor: "rgb(235, 202, 80)",
         backgroundColor: "#00BFA6",
+        // backgroundColor: "#1E1E1E",
       }}
     >
       <MyVersionCard />

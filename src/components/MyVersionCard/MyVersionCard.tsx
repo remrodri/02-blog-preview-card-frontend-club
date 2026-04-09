@@ -14,112 +14,122 @@ const MyVersionCard: React.FC = () => {
   return (
     <Card
       sx={{
+        fontFamily: "Figtree, sans-serif",
         width: 384,
-        height: 522,
+        borderRadius: "24px",
         backgroundColor: "#00BFA6",
-        borderRadius: "20px",
-        // boxShadow: "8px 8px 0px 0px hsl(0, 0%, 0%)",
-        boxShadow: "10px 10px 9px #039c88ff, -6px -6px 15px #0ee7caff",
-        padding: "16px",
+        padding: "16px 16px 0 16px",
         display: "flex",
         flexDirection: "column",
-        border: "1px solid #00BFA6",
+
+        /* Estado normal */
+        boxShadow:
+          "12px 12px 24px rgba(0,0,0,0.6), " +
+          "-12px -12px 24px rgba(255,255,255,0.05)",
+
+        /*  Transición SUAVE y controlada */
+        transition: `
+      box-shadow 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 280ms ease
+    `,
+
+        willChange: "box-shadow, transform",
 
         "&:hover": {
-          boxShadow: "14px 14px 22px #039c88ff, -10px -10px 22px #0ee7caff",
-          // cursor: "pointer",
+          transform: "translateY(-4px)",
+
+          /* 👉 sombra aún externa, más profunda */
+          boxShadow:
+            "18px 18px 36px rgba(0,0,0,0.8), " +
+            "-18px -18px 36px rgba(255,255,255,0.06)",
+        },
+
+        "&:active": {
           transform: "translateY(-1px)",
-          transition: "all 0.3s ease-in-out",
-          // border: "1px solid #00ffddff",
+
+          /* ✅ inset SOLO en active (presionado) */
+          boxShadow:
+            "inset 6px 6px 12px rgba(0,0,0,0.7), " +
+            "inset -6px -6px 12px rgba(255,255,255,0.06)",
         },
       }}
     >
-      {/* <Box
-        sx={{
-          width: 336,
-          height: 208,
-          backgroundColor: "#EBCA50",
-          borderRadius: "20px",
-          // boxShadow: "8px 8px 0px 0px hsl(0, 0%, 0%)",
-          boxShadow: "8px 8px 9px #c8ac44, -8px -8px 9px #ffe85c",
-          padding: "24px",
-          display: "flex",
-          flexDirection: "column",
-          // border: "1px solid #f3ce47ff",
-        }}
-      >
-        <img src={image} alt="Illustration article" style={{ width: "100%", height: "100%" }} />
-      </Box> */}
+      {/* IMAGE */}
       <CardMedia
         component="img"
         image={image}
         alt="Illustration article"
         sx={{
-          width: 336,
+          backgroundColor: "#1E1E1E",
           height: 208,
-          backgroundColor: "#dddddd",
-          borderRadius: "20px",
-          // boxShadow: "8px 8px 0px 0px hsl(0, 0%, 0%)",
-          boxShadow: "9px 9px 10px #039c88ff, -9px -9px 10px #0ee7caff",
-          // padding: "8px",
-          margin: "8px",
-          display: "flex",
-          flexDirection: "column",
+          borderRadius: "18px",
           objectFit: "cover",
-          objectPosition: "center",
-          // border: "1px solid #f3ce47ff",
+
+          boxShadow:
+            "inset 3px 3px 6px rgba(0,0,0,0.7), " +
+            "inset -3px -3px 6px rgba(255,255,255,0.08)",
+
+          marginBottom: "16px",
+
+          transition: "transform 400ms ease, filter 400ms ease",
+
+          "&:hover": {
+            transform: "scale(1.02)",
+            filter: "brightness(1.03)",
+          },
         }}
       />
+
       <CardContent
         sx={{
+          color: "#fff",
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          margin: "12px 0 12px 8px",
-          padding: "0",
+          padding: 0,
+          // margin: 0,
         }}
       >
+        {/* TAG */}
         <Typography
-          fontFamily="Figtree"
           sx={{
-            width: 82,
-            height: 28,
+            fontFamily: "Figtree, sans-serif",
+            width: "fit-content",
+            padding: "4px 12px",
+            borderRadius: "999px",
+            fontSize: "12px",
+            fontWeight: 600,
+            letterSpacing: "0.04em",
             backgroundColor: "#EBCA50",
-            borderRadius: "4px",
-            fontSize: "14px",
-            fontWeight: "800",
-            color: "#000000",
-            textAlign: "center",
-            lineHeight: "28px",
-            boxShadow: "4px 4px 10px #039c88ff, -4px -4px 10px #0ee7caff",
+            color: "#222",
+            boxShadow: "2px 2px 6px rgba(0, 0, 0, 0.39), -2px -2px 6px #00BFA6",
           }}
         >
           Learning
         </Typography>
+
+        {/* DATE */}
         <Typography
-          fontFamily="Figtree"
           sx={{
-            width: 160,
-            height: 28,
-            fontSize: "14px",
-            fontWeight: "600",
-            color: "#000000",
-            textAlign: "left",
-            lineHeight: "28px",
+            fontFamily: "Figtree, sans-serif",
+            fontSize: "13px",
+            color: "rgba(0,0,0,0.5)",
+            fontWeight: 500,
           }}
         >
           Published 4 Apr 2026
         </Typography>
 
+        {/* TITLE */}
         <Typography
-          fontFamily="Figtree"
           sx={{
-            fontSize: "26px",
-            fontWeight: 600,
-            lineHeight: "32px",
-            color: "#000",
-            transition: "color .2s",
+            fontSize: "24px",
+            fontWeight: 700,
+            lineHeight: "30px",
+            color: "#111",
             cursor: "pointer",
+            transition: "color 400ms ease",
+            fontFamily: "Figtree, sans-serif",
             "&:hover": {
               color: "#EBCA50",
             },
@@ -127,70 +137,58 @@ const MyVersionCard: React.FC = () => {
         >
           <DecriptedText
             text="HTML & CSS foundations"
-            speed={50}
-            maxIterations={20}
-            characters="ABCD1234!?"
-            // className="revealed"
-            // parentClassName="all-letters"
-            // encryptedClassName="encrypted"
+            speed={40}
+            maxIterations={18}
+            characters="ABCD1234!?@#"
             animateOn="hover"
           />
         </Typography>
 
+        {/* DESCRIPTION */}
         <Typography
           sx={{
-            width: 336,
-            // height: 28,
-            fontSize: "16px",
-            fontWeight: "500",
-            color: "hsl(0, 0%, 42%)",
-            // textAlign: "center",
+            pr: "50px",
+            fontSize: "15px",
             lineHeight: "24px",
-            letterSpacing: "0.5px",
+            color: "rgba(0,0,0,0.6)",
+            fontFamily: "Figtree, sans-serif",
           }}
         >
           These languages are the backbone of every website, defining structure
           and presentation.
         </Typography>
+
+        {/* AUTHOR */}
         <Box
           sx={{
+            // marginTop: "auto",
             display: "flex",
-            flexDirection: "row",
             alignItems: "center",
             gap: "12px",
           }}
         >
           <Box
             sx={{
-              width: 50,
-              height: 50,
-              backgroundColor: "#00BFA6",
-              boxShadow: "4px 4px 10px #039c88ff, -4px -4px 10px #0ee7caff",
+              width: 52,
+              height: 52,
+              borderRadius: "50%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              borderRadius: "50%",
-              border: "1px solid #00BFA6",
-              "&:hover": {
-                // transform: "translateY(-4px)",
-                transition: "all 0.3s ease-in-out",
-                // border: "1px solid #00ffddff",
-                boxShadow: "4px 4px 10px #017464ff, -4px -4px 10px #00ffddff",
-                cursor: "pointer",
-              },
+              backgroundColor: "#00BFA6",
+              boxShadow:
+                "inset 3px 3px 6px rgba(0,0,0,0.15), inset -3px -3px 6px #00BFA6",
             }}
           >
-            <Avatar src={avatar} alt="Avatar" />
+            <Avatar src={avatar} sx={{ width: 36, height: 36 }} />
           </Box>
+
           <Typography
             sx={{
-              // width: 100,
-              height: 28,
               fontSize: "14px",
-              fontWeight: "600",
-              color: "#000000",
-              // textAlign: "center",
-              lineHeight: "28px",
+              fontWeight: 500,
+              color: "#111",
+              fontFamily: "Figtree, sans-serif",
             }}
           >
             Rembert Rodrigo
